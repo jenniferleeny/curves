@@ -14,7 +14,10 @@ int main( int argc, char **argv ) {
   struct matrix *edges;
   struct matrix *transform;
 
-  /*
+  //print_matrix(make_bezier());
+  //printf("\n");
+  //print_matrix(make_hermite());
+  
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
 
@@ -25,5 +28,5 @@ int main( int argc, char **argv ) {
   
   free_matrix( transform );
   free_matrix( edges );
-  */
+  
 }
