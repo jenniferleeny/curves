@@ -14,6 +14,7 @@ int main( int argc, char **argv ) {
   struct matrix *edges;
   struct matrix *transform;
 
+  /*
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
 
@@ -24,4 +25,5 @@ int main( int argc, char **argv ) {
   
   free_matrix( transform );
   free_matrix( edges );
+  */
 }

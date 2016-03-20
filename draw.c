@@ -21,6 +21,13 @@
 void add_circle( struct matrix * points, 
 		 double cx, double cy, 
 		 double r, double step ) {
+  
+  double t, x, y;
+  for (t = 0; t <= 2*(M_PI); t+=step) {
+    x = r*cos(t) + cx;
+    y = r*sin(t) + cy;
+    add_point(points, x, y, 0);
+  }
 }
 
 /*======== void add_curve() ==========
@@ -48,6 +55,14 @@ void add_curve( struct matrix *points,
 		double x2, double y2, 
 		double x3, double y3, 
 		double step, int type ) {
+  
+  if (type == 0) {//HERMITE
+    
+  }
+  else if (type == 1) {//BEZIER
+
+  }
+      
 }
 
 /*======== void add_point() ==========
@@ -95,17 +110,12 @@ Go through points 2 at a time and call draw_line to add that line
 to the screen
 ====================*/
 void draw_lines( struct matrix * points, screen s, color c) {
-
   int i;
- 
   if ( points->lastcol < 2 ) {
-    
     printf("Need at least 2 points to draw a line!\n");
     return;
   }
-
   for ( i = 0; i < points->lastcol - 1; i+=2 ) {
-
     draw_line( points->m[0][i], points->m[1][i], 
 	       points->m[0][i+1], points->m[1][i+1], s, c);
   }        
