@@ -70,9 +70,6 @@ void add_curve( struct matrix *points,
     d_x = x2 - a_x - b_x - c_x;
     
     a_y = y0;
-    c_y = y1;
-    b_y = (y3 - c_y - 3*a_y)/2;
-    d_y = y2 - a_y - b_y - c_y;
     */
     coef_x = generate_curve_coefs(x0, x2, x1, x3, 0);
     coef_y = generate_curve_coefs(y0, y2, y1, y3, 0);
@@ -97,7 +94,18 @@ void add_curve( struct matrix *points,
     c_y = -3*y0 + 3*y1;
     d_y = y0;
     */
-    }
+    coef_x = generate_curve_coefs(x0, x1, x2, x3, 0);
+    coef_y = generate_curve_coefs(y0, y1, y2, y3, 0);
+    a_x = coef_x->m[0][0];
+    b_x = coef_x->m[0][1];
+    c_x = coef_x->m[0][2];
+    d_x = coef_x->m[0][3];
+
+    a_y = coef_y->m[0][0];
+    b_y = coef_y->m[0][1];
+    c_y = coef_y->m[0][2];
+    d_y = coef_y->m[0][3];  
+  }
   double t, t1; 
   double point_x0, point_y0, point_x1, point_y1;
   
