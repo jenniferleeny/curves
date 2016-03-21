@@ -20,11 +20,14 @@ int main( int argc, char **argv ) {
   struct matrix *points;
   struct matrix *edges;
   struct matrix *transform;
-
-  //print_matrix(make_bezier());
+  
+  //make_hermite();
   //printf("\n");
   //print_matrix(make_hermite());
   
+  //points = generate_curve_coefs(100, 150, 200, 250, 1);
+  //print_matrix(points);
+
   points = new_matrix(4,4);
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);

@@ -60,9 +60,10 @@ void add_curve( struct matrix *points,
 		double step, int type ) {
   double a_x, b_x, c_x, d_x;  //coefficients
   double a_y, b_y, c_y, d_y;
-
+  struct matrix * coef_x = new_matrix(4, 4);
+  struct matrix * coef_y = new_matrix(4, 4);
   if (type == HERMITE_MODE) {//HERMITE: x0 y0 x2 y2 are the endpoints
-    a_x = x0; 
+    /*    a_x = x0; 
     c_x = x1;
     //3*a + 2*b + c = x3;
     b_x = (x3 - c_x - 3*a_x)/2;
@@ -72,9 +73,21 @@ void add_curve( struct matrix *points,
     c_y = y1;
     b_y = (y3 - c_y - 3*a_y)/2;
     d_y = y2 - a_y - b_y - c_y;
+    */
+    coef_x = generate_curve_coefs(x0, x2, x1, x3, 0);
+    coef_y = generate_curve_coefs(y0, y2, y1, y3, 0);
+    a_x = coef_x->m[0][0];
+    b_x = coef_x->m[0][1];
+    c_x = coef_x->m[0][2];
+    d_x = coef_x->m[0][3];
+    
+    a_y = coef_y->m[0][0];
+    b_y = coef_y->m[0][1];
+    c_y = coef_y->m[0][2];
+    d_y = coef_y->m[0][3];
   }
   else if (type == BEZIER_MODE) {//BEZIER: x0 y0 x3 y3 are the endpoints
-    a_x = -x0 + 3*x1 - 3*x2 + x3;
+    /*    a_x = -x0 + 3*x1 - 3*x2 + x3;
     b_x = 3*x0 + 6*x1 + 3*x2;
     c_x = -3*x0 + 3*x1;
     d_x = x0;
@@ -83,9 +96,11 @@ void add_curve( struct matrix *points,
     b_y = 3*y0 + 6*y1 + 3*y2;
     c_y = -3*y0 + 3*y1;
     d_y = y0;
-  }
+    */
+    }
   double t, t1; 
   double point_x0, point_y0, point_x1, point_y1;
+  
   for (t = 0; t < 1; t += step) {
     point_x0 = t*(t*(a_x*t + b_x) + c_x) + d_x;
     point_y0 = t*(t*(a_y*t + b_y) + c_y) + d_y;
@@ -93,6 +108,7 @@ void add_curve( struct matrix *points,
     point_x1 = t1*(t1*(a_x*t1 + b_x) + c_x) + d_x;
     point_y1 = t1*(t1*(a_y*t1 + b_y) + c_y) + d_y;
     add_edge(points, x0, y0, 0, x1, y1, 0);
+    //add_point(points, x0, y0, 0);
   }
 }
 

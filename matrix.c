@@ -289,12 +289,26 @@ struct matrix * make_bezier() {
   ====================*/
 struct matrix * make_hermite() {
   struct matrix * m = new_matrix(4, 4);
-  m->m[0][3] = 1;
+  /*  m->m[0][3] = 1;
   int i;
   for (i = 0; i < 4; i++)
     m->m[1][i] = 1;
   m->m[2][2] = 1;
   m->m[3][0] = 3; m->m[3][1] = 2; m->m[3][2] = 1;
+  */
+
+  m->m[0][0] = 2;
+  m->m[0][1] = -2;
+  m->m[0][2] = 1;
+  m->m[0][3] = 1;
+  m->m[1][0] = -3;
+  m->m[1][1] = 3;
+  m->m[1][2] = -2;
+  m->m[1][3] = 1;
+  m->m[2][2] = 1;
+  m->m[3][0] = 1;
+
+  //print_matrix(m);
   return m;
 }
 
@@ -328,5 +342,6 @@ struct matrix * generate_curve_coefs( double p1, double p2,
 
   matrix_mult(m, n);
   free_matrix(m);
+  print_matrix(n);
   return n;
 }
