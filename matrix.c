@@ -80,6 +80,7 @@ void print_matrix(struct matrix *m) {
       printf("%f ", m->m[i][j]);
     printf("\n");
   }
+  printf("\n");
 }
 
 /*-------------- void ident() --------------
